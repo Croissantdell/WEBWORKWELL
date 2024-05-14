@@ -44,6 +44,7 @@ $genreDAO = new GenreDAO($db);
                         <?php foreach ($genres as $genre) { echo htmlspecialchars($genre['libelleGenre']) . ', '; } ?>
                     </p>
                 </div>
+        </div>
             <?php endforeach; ?>
         </div>
     </section>
