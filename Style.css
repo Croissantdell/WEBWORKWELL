@@ -1,0 +1,259 @@
+body {
+    background-color: #0b0d28;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.main-header {
+    background-color: #141743;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-nav .nav-list {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.main-nav .nav-item {
+    margin-right: 15px;
+}
+
+.main-nav .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main-nav .nav-link:hover {
+    text-decoration: underline;
+}
+
+.user-account {
+    display: flex;
+}
+
+.user-account .btn {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4f67ff;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.user-account .btn:hover {
+    background-color: #3b4ccf;
+}
+
+main {
+    padding: 20px;
+}
+
+#welcome {
+    text-align: center;
+}
+
+.oeuvres-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.oeuvre {
+    background-color: #202555;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px;
+    padding: 10px;
+    max-width: 200px;
+    text-align: center;
+}
+
+.oeuvre img {
+    max-width: 100%;
+    border-bottom: 2px solid #4f67ff;
+}
+
+.oeuvre h3 {
+    margin: 10px 0;
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.oeuvre p {
+    font-size: 0.9em;
+    color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.oeuvre p img.icon {
+    width: 16px; /* Adjust the size as needed */
+    height: 16px;
+    margin-right: 5px;
+}
+/* Style de base */
+body {
+    background-color: #0b0d28;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #141743;
+    padding: 20px;
+    text-align: center;
+}
+
+header .main-nav .nav-list {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+header .main-nav .nav-item {
+    margin: 0 15px;
+}
+
+header .main-nav .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+header .main-nav .nav-link:hover {
+    color: #4f67ff;
+}
+
+main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+    flex: 1;
+}
+
+.oeuvre-heading {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.oeuvre-heading a {
+    font-size: 0.5em;
+    margin-left: 10px;
+    color: #4f67ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.oeuvre-heading a:hover {
+    color: #fff;
+}
+
+.oeuvre-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    background-color: #202555;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.oeuvre-details img {
+    max-width: 300px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.oeuvre-details div {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.oeuvre-details h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.oeuvre-details p {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.section-title {
+    font-size: 1.8em;
+    margin: 30px 0 20px;
+    text-align: center;
+}
+
+.section {
+    background-color: #141743;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.section-link {
+    color: #4f67ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.section-link:hover {
+    color: #fff;
+}
+
+.section-text {
+    color: #aaa;
+    font-size: 1em;
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+footer {
+    background-color: #141743;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .oeuvre-details {
+        flex-direction: column;
+    }
+
+    .oeuvre-details div {
+        margin-left: 0;
+    }
+}
