@@ -23,6 +23,13 @@ class RealisateurDAO
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function getRealisateursByOeuvre($codeOeuvre): array {
+    $sql = "SELECT r.* FROM realiser ro JOIN realisateur r ON ro.idRealisateur = r.idRealisateur WHERE ro.codeOeuvre = ?";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute([$codeOeuvre]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC); // Assuming fetchAll returns an associative array
+}
+
     public function getAllRealisateurs() {
         $query = "SELECT * FROM REALISATEUR";
         $stmt = $this->db->prepare($query);
@@ -58,7 +65,6 @@ class RealisateurDAO
                 VALUES (:idRealisateur, :nomRealisateur, :prenomRealisateur, :nationaliteRealisateur, :recompenseRealisateur, :photo)";
         $stmt = $this->db->prepare($sql);
 
-        // Assigning the property values to variables
         $idRealisateur = $realisateur->getIdRealisateur();
         $nomRealisateur = $realisateur->getNomRealisateur();
         $prenomRealisateur = $realisateur->getPrenomRealisateur();

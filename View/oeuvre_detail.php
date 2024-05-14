@@ -19,12 +19,12 @@ $genreDAO = new GenreDAO($db);
 
 $oeuvre = $oeuvreDAO->getOeuvreById($oeuvreId);
 
-$actors = $director = $classification = $genres = null;
+$actors = $director = $classifications = $genres = null;
 
 if ($oeuvre) {
     $actors = $acteurDAO->getActorsByOeuvre($oeuvreId);
     $director = $realisateurDAO->getRealisateurByOeuvre($oeuvreId);
-    $classification = $classificationDAO->getClassificationByOeuvre($oeuvreId);
+    $classifications = $classificationDAO->getClassificationsByOeuvre($oeuvreId);
     $genres = $genreDAO->getGenresByOeuvre($oeuvreId);
 }
 
@@ -36,7 +36,7 @@ function cleanData($data) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Détail de l'Œuvre: <?= cleanData($oeuvre->titreFrancaisOeuvre ?? ''); ?></title>
+    <title>Détail de l'Œuvre: <?= cleanData($oeuvre->getTitreFrancaisOeuvre() ?? ''); ?></title>
     <link rel="stylesheet" href="../Style.css">
 </head>
 <body>
@@ -46,22 +46,28 @@ function cleanData($data) {
 <main>
     <?php if ($oeuvre): ?>
         <h1 class="oeuvre-heading">
-            <?= cleanData($oeuvre->titreFrancaisOeuvre); ?>
+            <?= cleanData($oeuvre->getTitreFrancaisOeuvre()); ?>
             <?php if (isset($_SESSION['idCompte']) && $_SESSION['idCompte']): ?>
-                <a href="edit_oeuvre.php?id=<?= cleanData($oeuvre->codeOeuvre); ?>">Modifier</a>
-                <a href="delete_oeuvre.php?id=<?= cleanData($oeuvre->codeOeuvre); ?>">Supprimer</a>
+                <a href="edit_oeuvre.php?id=<?= cleanData($oeuvre->getCodeOeuvre()); ?>">Modifier</a>
+                <a href="delete_oeuvre.php?id=<?= cleanData($oeuvre->getCodeOeuvre()); ?>">Supprimer</a>
             <?php endif; ?>
         </h1>
         <div class="oeuvre-details">
-            <img src="<?= cleanData($oeuvre->affiche); ?>" alt="Affiche de <?= cleanData($oeuvre->titreFrancaisOeuvre); ?>">
+            <img src="<?= cleanData($oeuvre->getAffiche()); ?>" alt="Affiche de <?= cleanData($oeuvre->getTitreFrancaisOeuvre()); ?>">
             <div>
-                <h2><?= cleanData($oeuvre->titreFrancaisOeuvre); ?></h2>
-                <p><strong>Titre Original:</strong> <?= cleanData($oeuvre->titreOriginalOeuvre); ?></p>
-                <p><strong>Année de sortie:</strong> <?= cleanData($oeuvre->anneeSortieOeuvre); ?></p>
-                <p><strong>Résumé:</strong> <?= cleanData($oeuvre->resumeOeuvre); ?></p>
-                <p><strong>Nombre d'épisodes:</strong> <?= cleanData($oeuvre->nbEpisodeOeuvre); ?></p>
-                <?php if ($classification): ?>
-                    <p><strong>Classification :</strong> <?= cleanData($classification->getLibelleClassification()); ?></p>
+                <h2><?= cleanData($oeuvre->getTitreFrancaisOeuvre()); ?></h2>
+                <p><strong>Titre Original:</strong> <?= cleanData($oeuvre->getTitreOriginalOeuvre()); ?></p>
+                <p><strong>Année de sortie:</strong> <?= cleanData($oeuvre->getAnneeSortieOeuvre()); ?></p>
+                <p><strong>Résumé:</strong> <?= cleanData($oeuvre->getResumeOeuvre()); ?></p>
+                <?php if (!is_null($oeuvre->getNbEpisodeOeuvre())): ?>
+                    <p><strong>Nombre d'épisodes:</strong> <?= cleanData($oeuvre->getNbEpisodeOeuvre()); ?></p>
+                <?php endif; ?>
+                <?php if ($classifications): ?>
+                    <p><strong>Classifications :</strong>
+                        <?php foreach ($classifications as $classification): ?>
+                            <?= cleanData($classification->getLibelleClassification()); ?>
+                        <?php endforeach; ?>
+                    </p>
                 <?php endif; ?>
             </div>
         </div>

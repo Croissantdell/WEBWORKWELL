@@ -80,10 +80,11 @@ $classifications = $classificationDAO->getAllClassifications();
             <?php endforeach; ?>
         </select>
 
-        <label for="codeClassification">Classification:</label>
         <select id="codeClassification" name="codeClassification">
             <?php foreach ($classifications as $classification) : ?>
-                <option value="<?= $classification['codeClassification']; ?>"><?= $classification['libelleClassification']; ?></option>
+                <option value="<?= htmlspecialchars($classification->getCodeClassification()); ?>">
+                    <?= htmlspecialchars($classification->getLibelleClassification()); ?>
+                </option>
             <?php endforeach; ?>
         </select>
 

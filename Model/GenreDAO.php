@@ -37,7 +37,6 @@ class GenreDAO {
         $sql = "INSERT INTO genre (idGenre, libelleGenre) VALUES (:idGenre, :libelleGenre)";
         $stmt = $this->db->prepare($sql);
 
-        // Assigning the property values to variables
         $idGenre = $genre->getIdGenre();
         $libelleGenre = $genre->getLibelleGenre();
 
