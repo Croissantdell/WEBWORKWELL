@@ -60,41 +60,57 @@ $associatedClassifications = $classificationDAO->getClassificationByOeuvre($code
         <?php include 'header.php'; ?>
     </header>
     <main>
-        <h1>Modifier une œuvre</h1>
+        <h1 class="Msgoeuvre">Modifier des Oeuvres</h1>
+        <hr>
         <form method="post" action="update_oeuvre.php" enctype="multipart/form-data">
             <input type="hidden" name="codeOeuvre" value="<?= $codeOeuvre; ?>">
 
-            <label for="titreOriginalOeuvre">Titre Original:</label>
-            <input type="text" id="titreOriginalOeuvre" name="titreOriginalOeuvre" value="<?= $oeuvre->titreOriginalOeuvre ?>"><br>
+            <div class="column-container">
+                <div class="column left">
+                    <label class="label-above-input" for="titreOriginalOeuvre">Titre Original:</label>
+                    <input type="text" id="titreOriginalOeuvre" name="titreOriginalOeuvre" value="<?= $oeuvre->titreOriginalOeuvre ?>">
+                </div>
+                <div class="column right">
+                    <label class="label-above-input" for="titreFrancaisOeuvre">Titre Francais:</label>
+                    <input type="text" id="titreFrancaisOeuvre" name="titreFrancaisOeuvre" value="<?= $oeuvre->titreFrancaisOeuvre ?>">
+                </div>
 
-            <label for="titreFrancaisOeuvre">Titre Francais:</label>
-            <input type="text" id="titreFrancaisOeuvre" name="titreFrancaisOeuvre" value="<?= $oeuvre->titreFrancaisOeuvre ?>"><br>
+                <div class="column right">
+                    <label class="label-above-input" for="anneeSortieOeuvre">Année de sortie:</label>
+                    <input type="text" id="anneeSortieOeuvre" name="anneeSortieOeuvre" value="<?= $oeuvre->anneeSortieOeuvre ?>">
+                </div>
+                <div class="column left">
+                    <label class="label-above-input" for="resumeOeuvre">Résumé de l'œuvre :</label>
+                    <textarea id="resumeOeuvre" name="resumeOeuvre" class="left-column"><?= $oeuvre->resumeOeuvre ?></textarea>
+                </div>
 
-            <label for="anneeSortieOeuvre">Année de sortie:</label>
-            <input type="text" id="anneeSortieOeuvre" name="anneeSortieOeuvre" value="<?= $oeuvre->anneeSortieOeuvre ?>"><br>
+                <div class="column right">
+                    <label class="label-above-input" for="nbEpisodeOeuvre">Nombre d'épisode :</label>
+                    <input type="text" id="nbEpisodeOeuvre" name="nbEpisodeOeuvre" value="<?= $oeuvre->nbEpisodeOeuvre ?>">
+                </div>
 
-            <label for="resumeOeuvre">Résumé de l'œuvre :</label>
-            <textarea id="resumeOeuvre" name="resumeOeuvre"><?= $oeuvre->resumeOeuvre ?></textarea><br>
+                <div class="column left">
+                    <label class="label-above-input" for="acteurs">Acteurs:</label>
+                    <select id="acteurs" name="acteurs[]" multiple>
+                        <?php foreach ($acteurs as $acteur): ?>
+                            <option value="<?= $acteur['idActeur']; ?>"
+                                <?php if (in_array($acteur['idActeur'], $associatedActors)) echo "selected"; ?>>
+                                <?= $acteur['nomActeur']; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
 
-            <label for="nbEpisodeOeuvre">Nombre d'épisode :</label>
-            <input type="text" id="nbEpisodeOeuvre" name="nbEpisodeOeuvre" value="<?= $oeuvre->nbEpisodeOeuvre ?>"><br>
+                <label class="label-above-input" for="affiche">Affiche:</label>
+                <label class="label-above-input" for="affiche">Affiche:</label>
+                <input type="file" id="affiche" name="affiche">
+            </div>
+            </div>
 
-            <label for="affiche">Affiche:</label>
-            <input type="file" id="affiche" name="affiche"><br>
-
-            <label for="acteurs">Acteurs:</label>
-            <select id="acteurs" name="acteurs[]" multiple>
-                <?php foreach ($acteurs as $acteur): ?>
-                    <option value="<?= $acteur['idActeur']; ?>"
-                        <?php if (in_array($acteur['idActeur'], $associatedActors)) echo "selected"; ?>>
-                        <?= $acteur['nomActeur']; ?>
-                    </option>
-                <?php endforeach; ?>
-            </select><br>
 
             <input type="submit" value="Modifier l'œuvre">
         </form>
     </main>
     </body>
     </html>
-<?php include 'footer.php'; ?>
+<?php include 'footer.php'; ?>S

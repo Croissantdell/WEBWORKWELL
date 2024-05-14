@@ -1,28 +1,148 @@
+:root {
+    --main-bg-color: #0b0d28;
+    --main-text-color: #fff;
+    --primary-color: #141743;
+    --secondary-color: #CDB74B;
+    --box-shadow-color: rgba(0,0,0,0.2);
+    --hover-box-shadow-color: rgba(0,0,0,0.4);
+    --border-radius: 10px;
+    --gap-size: 20px;
+}
+
+
+.column-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.column {
+    flex: 0 1 48%; /* Répartit l'espace sur 2 colonnes avec une marge entre chaque */
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+
+.left, .right {
+    text-align: center;
+}
+
+/* Pour garantir que les éléments de la liste des acteurs aient la même largeur */
+#acteurs {
+    width: 29%;
+}
+
+.affiche-container {
+    position: relative;
+    top: -50px; /* Déplacez le conteneur vers le haut de 50 pixels */
+}
+
+#affiche {
+    width: 25%;
+}
+
+
+
+/* Pour afficher les étiquettes au-dessus des champs */
+.label-above-input {
+    display: block;
+}
+
+/* Style des boutons */
+input[type="submit"] {
+    display: block;
+    margin-top: 10px; /* Ajoutez de l'espace au-dessus du bouton */
+}
+
+/* General */
 body {
-    background-color: #0b0d28;
-    color: #fff;
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    line-height: 1.6;
+}
+
+body > * {
+    padding: var(--gap-size);
 }
 
 .main-header {
-    background-color: #141743;
+    background-color: var(--primary-color);
+    color: var(--main-text-color);
+    margin-top: 50px;
+    padding: 18px;
+    border-radius: 25px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Msgoeuvre{
+    text-align:center;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.barre-separation {
+    position: absolute;
+    bottom: 445px;
+    left: 34px;
+    width: calc(95% - 40px);
+    height: 1px;
+    background-color: #272768;
+}
+
+.barrerecherche {
+    background-color: white;
+    border: none;
+    color: black;
+    width: 14%;
+    border-radius: 20px;
+    padding: 13px;
+    padding-left: 80px;
+
+}
+
+.Categorie-bouton {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     padding: 10px;
+}
+
+.Categorie-bouton button {
+    margin-left: 20px;
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: white;
+    background-color: transparent;
+    cursor: pointer; /* Changer la souris qd on pointe */
+}
+
+.Categorie-bouton button:hover,
+.Categorie-bouton button:focus {
+    background-color: #f0f0f0; /* Couleur de fond au survol/focus */
+    color: black; /* Couleur du texte au survol/focus */
+}
+
+/* Navigation */
+.main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.main-nav .nav-list {
-    list-style: none;
-    display: flex;
+.nav-list {
+    list-style-type: none;
     padding: 0;
-    margin: 0;
+    display: flex;
 }
 
-.main-nav .nav-item {
-    margin-right: 15px;
+.nav-item {
+    margin-right: var(--gap-size);
 }
 
 .main-nav .nav-link {
@@ -101,24 +221,6 @@ main {
     width: 16px; /* Adjust the size as needed */
     height: 16px;
     margin-right: 5px;
-}
-/* Style de base */
-body {
-    background-color: #0b0d28;
-    color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-header {
-    background-color: #141743;
-    padding: 20px;
-    text-align: center;
 }
 
 header .main-nav .nav-list {
@@ -240,12 +342,12 @@ main {
 footer {
     background-color: #141743;
     padding: 10px;
-    text-align: center;
     color: #fff;
     position: relative;
     bottom: 0;
     width: 100%;
 }
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -256,4 +358,6 @@ footer {
     .oeuvre-details div {
         margin-left: 0;
     }
+
+
 }
