@@ -24,6 +24,10 @@ if (session_status() === PHP_SESSION_NONE) { session_start(); }
         <div class="user-account">
             <?php if(isset($_SESSION['idCompte'])): ?>
                 <a href="compte.php" class="btn btn-primary logout-btn">Ajouter oeuvre</a>
+                <a href="compte.php" class="btn btn-primary logout-btn">Ajouter oeuvre</a>
+
+                <a href="compte.php" class="btn btn-primary logout-btn">Ajouter oeuvre</a>
+
                 <a href="logout.php" class="btn btn-primary logout-btn">Déconnexion</a>
             <?php else: ?>
                 <a href="login.php" class="btn btn-primary login-btn">Connexion</a>
