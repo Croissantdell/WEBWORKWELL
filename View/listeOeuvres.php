@@ -34,7 +34,7 @@ $oeuvres = $oeuvreDAO->getAllOeuvresdiff($search, $sort, $filter);
     </form>
 </nav>
 <main class="oeuvres-main">
-    <h1 class="oeuvres-heading">Liste des Oeuvres</h1>
+    <h2 class="oeuvres-heading">Liste des Oeuvres</h2>
     <div class="oeuvres-container">
         <?php foreach ($oeuvres as $oeuvre): ?>
             <div class="oeuvre-card">
