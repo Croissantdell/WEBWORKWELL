@@ -25,7 +25,7 @@ $genreDAO = new GenreDAO($db);
 <?php include 'header.php'; ?>
 <main>
     <section id="welcome">
-        <h2>Découvrez les dernières œuvres</h2>
+        <h2>Découvrez les dernières œuvress</h2>
         <div class="oeuvres-container">
             <?php foreach ($latestOeuvres as $oeuvre):
                 $director = $realisateurDAO->getRealisateurByOeuvre($oeuvre['codeOeuvre']);
