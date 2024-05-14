@@ -2,7 +2,11 @@
 require_once '../Model/RealisateurBO.php';
 require_once '../Model/RealisateurDAO.php';
 require_once '../database.php';
+session_start();
 
+if (!isset($_SESSION['idCompte'])) {
+    header("Location: login.php");
+}
 $database = new Database();
 $db = $database->getPDO();
 

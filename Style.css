@@ -954,4 +954,51 @@ footer {
         max-width: 90%;
     }
 }
+/* Specific Styles for Intermediate Page */
+.choice-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.choice-form button {
+    margin: 10px 0;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.choice-form .btn-edit {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.choice-form .btn-edit:hover {
+    background-color: #0056b3;
+}
+
+.choice-form .btn-add {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.choice-form .btn-add:hover {
+    background-color: #218838;
+}
+
+.choice-form .btn-delete {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.choice-form .btn-delete:hover {
+    background-color: #c82333;
+}
 

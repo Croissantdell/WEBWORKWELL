@@ -7,7 +7,9 @@ require_once '../Model/RealisateurDAO.php';
 require_once '../Model/GenreDAO.php';
 require_once '../Model/ClassificationDAO.php';
 require_once '../database.php';
-
+if (!isset($_SESSION['idCompte'])) {
+    header("Location: login.php");
+}
 $database = new Database();
 $db = $database->getPDO();
 

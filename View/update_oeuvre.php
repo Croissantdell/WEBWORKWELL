@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['idCompte'])) {
+    header("Location: login.php");
+}
 require_once '../Model/OeuvreDAO.php';
 require_once '../database.php';
 

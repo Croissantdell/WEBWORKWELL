@@ -23,8 +23,8 @@ if (session_status() === PHP_SESSION_NONE) { session_start(); }
         <div class="user-account">
             <?php if(isset($_SESSION['idCompte'])): ?>
                 <a href="compte.php" class="btn btn-primary logout-btn">Ajouter oeuvre</a>
-                <a href="choixgestion.php?type=realisateur" class="btn btn-primary logout-btn">Gestion realisateur</a>
-                <a href="choixgestion.php?type=acteur" class="btn btn-primary logout-btn">Gestion acteur</a>
+                <a href="listegenre.php" class="btn btn-primary logout-btn">Gestion realisateur</a>
+                <a href="liste_acteurs_gestion.php" class="btn btn-primary logout-btn">Gestion acteur</a>
                 <a href="choixgestion.php?type=genre" class="btn btn-primary logout-btn">Gestion genre</a>
                 <a href="choixgestion.php?type=classification" class="btn btn-primary logout-btn">Gestion classification</a>
                 <a href="logout.php" class="btn btn-primary logout-btn">Déconnexion</a>

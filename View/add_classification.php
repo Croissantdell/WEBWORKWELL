@@ -2,7 +2,11 @@
 require_once '../Model/ClassificationBO.php';
 require_once '../Model/ClassificationDAO.php';
 require_once '../database.php';
+session_start();
 
+if (!isset($_SESSION['idCompte'])) {
+    header("Location: login.php");
+}
 $database = new Database();
 $db = $database->getPDO();
 

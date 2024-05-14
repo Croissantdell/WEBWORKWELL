@@ -2,6 +2,11 @@
 require_once '../Model/GenreBO.php';
 require_once '../Model/GenreDAO.php';
 require_once '../database.php';
+session_start();
+
+if (!isset($_SESSION['idCompte'])) {
+    header("Location: login.php");
+}
 
 $database = new Database();
 $db = $database->getPDO();
