@@ -75,7 +75,7 @@ function cleanData($data) {
             <h2 class="section-title">Acteurs</h2>
             <?php if ($actors): foreach ($actors as $actor): ?>
                 <p>
-                    <a href="actor_detail.php?id=<?= cleanData($actor['idActeur']); ?>" class="section-link">
+                    <a href="acteur_detail.php?id=<?= cleanData($actor['idActeur']); ?>" class="section-link">
                         <?= cleanData($actor['prenomActeur']) . ' ' . cleanData($actor['nomActeur']); ?>
                     </a>
                     - <span class="section-text"><?= $actor['roleActeur'] ? 'Principal' : 'Secondaire'; ?></span>

@@ -80,7 +80,7 @@ $associatedClassificationCodes = array_map(function($classification) {
         <textarea id="resumeOeuvre" name="resumeOeuvre"><?= htmlspecialchars($oeuvre->getResumeOeuvre() ?? ''); ?></textarea><br>
 
         <label for="nbEpisodeOeuvre">Nombre d'épisodes :</label>
-        <input type="text" id="nbEpisodeOeuvre" name="nbEpisodeOeuvre" value="<?= htmlspecialchars($oeuvre->getNbEpisodeOeuvre() ?? ''); ?>"><br>
+        <input type="number" id="nbEpisodeOeuvre" name="nbEpisodeOeuvre" value="<?= htmlspecialchars($oeuvre->getNbEpisodeOeuvre() ?? ''); ?>"><br>
 
         <label for="affiche">Affiche actuelle:</label>
         <img src="<?= htmlspecialchars($oeuvre->getAffiche() ?? ''); ?>" alt="Affiche actuelle"><br>
@@ -130,3 +130,4 @@ $associatedClassificationCodes = array_map(function($classification) {
 </body>
 </html>
 <?php include 'footer.php'; ?>
+

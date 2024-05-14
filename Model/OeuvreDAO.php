@@ -148,14 +148,16 @@ class OeuvreDAO {
         string $titreFrancaisOeuvre,
         int $anneeSortieOeuvre,
         string $resumeOeuvre,
-        int $nbEpisodeOeuvre,
+        ?int $nbEpisodeOeuvre,
         string $affiche,
         array $acteurs,
         array $realisateurs,
         array $genres,
         array $classifications
     ) {
-        $sql = "UPDATE oeuvre SET titreOriginalOeuvre = ?, titreFrancaisOeuvre = ?, anneeSortieOeuvre = ?, resumeOeuvre = ?, nbEpisodeOeuvre = ?, affiche = ? WHERE codeOeuvre = ?";
+        $sql = "UPDATE oeuvre 
+            SET titreOriginalOeuvre = ?, titreFrancaisOeuvre = ?, anneeSortieOeuvre = ?, resumeOeuvre = ?, nbEpisodeOeuvre = ?, affiche = ? 
+            WHERE codeOeuvre = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([
             $titreOriginalOeuvre,
@@ -167,17 +169,28 @@ class OeuvreDAO {
             $codeOeuvre
         ]);
 
-        $this->updateRelations('jouer', 'idActeur', $codeOeuvre, $acteurs);
-        $this->updateRelations('realiser', 'idRealisateur', $codeOeuvre, $realisateurs);
-        $this->updateRelations('oeuvre_genre', 'idGenre', $codeOeuvre, $genres);
-        $this->updateRelations('oeuvre_classification', 'codeClassification', $codeOeuvre, $classifications);
-    }
+        $this->db->exec("DELETE FROM jouer WHERE codeOeuvre = $codeOeuvre");
+        foreach ($acteurs as $acteur) {
+            $stmt = $this->db->prepare("INSERT INTO jouer (idActeur, codeOeuvre) VALUES (?, ?)");
+            $stmt->execute([$acteur, $codeOeuvre]);
+        }
 
-    private function updateRelations(string $table, string $column, int $codeOeuvre, array $items) {
-        $this->db->exec("DELETE FROM $table WHERE codeOeuvre = $codeOeuvre");
-        foreach ($items as $item) {
-            $stmt = $this->db->prepare("INSERT INTO $table (codeOeuvre, $column) VALUES (?, ?)");
-            $stmt->execute([$codeOeuvre, $item]);
+        $this->db->exec("DELETE FROM realiser WHERE codeOeuvre = $codeOeuvre");
+        foreach ($realisateurs as $realisateur) {
+            $stmt = $this->db->prepare("INSERT INTO realiser (idRealisateur, codeOeuvre) VALUES (?, ?)");
+            $stmt->execute([$realisateur, $codeOeuvre]);
+        }
+
+        $this->db->exec("DELETE FROM oeuvre_genre WHERE codeOeuvre = $codeOeuvre");
+        foreach ($genres as $genre) {
+            $stmt = $this->db->prepare("INSERT INTO oeuvre_genre (codeOeuvre, idGenre) VALUES (?, ?)");
+            $stmt->execute([$codeOeuvre, $genre]);
+        }
+
+        $this->db->exec("DELETE FROM oeuvre_classification WHERE codeOeuvre = $codeOeuvre");
+        foreach ($classifications as $classification) {
+            $stmt = $this->db->prepare("INSERT INTO oeuvre_classification (codeOeuvre, codeClassification) VALUES (?, ?)");
+            $stmt->execute([$codeOeuvre, $classification]);
         }
     }
 }

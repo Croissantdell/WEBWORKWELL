@@ -19,11 +19,22 @@ $realisateurs = $_POST['realisateurs'] ?? [];
 $genres = $_POST['genres'] ?? [];
 $classifications = $_POST['classifications'] ?? [];
 
-$affiche = null;
-if (isset($_FILES['affiche']) && $_FILES['affiche']['error'] === UPLOAD_ERR_OK) {
-    $affiche = '../images/' . basename($_FILES['affiche']['name']);
-    move_uploaded_file($_FILES['affiche']['tmp_name'], $affiche);
+$uploadDir = '../image/';
+
+function uploadFile($uploadDir, $file)
+{
+    if (isset($_FILES[$file]) && $_FILES[$file]['error'] === UPLOAD_ERR_OK) {
+        $uploadFile = $uploadDir . basename($_FILES[$file]['name']);
+        if (move_uploaded_file($_FILES[$file]['tmp_name'], $uploadFile)) {
+            return $uploadFile;
+        } else {
+            echo "Erreur lors de l'upload du fichier.";
+        }
+    }
+    return false;
 }
+
+$affiche = uploadFile($uploadDir, 'affiche');
 
 if ($codeOeuvre && $titreOriginalOeuvre && $titreFrancaisOeuvre && $anneeSortieOeuvre) {
     $oeuvre = $oeuvreDAO->getOeuvreById($codeOeuvre);
@@ -31,6 +42,8 @@ if ($codeOeuvre && $titreOriginalOeuvre && $titreFrancaisOeuvre && $anneeSortieO
     if (!$affiche) {
         $affiche = $oeuvre->getAffiche();
     }
+
+    $nbEpisodeOeuvre = ($nbEpisodeOeuvre === '') ? null : (int)$nbEpisodeOeuvre;
 
     $oeuvre->setTitreOriginalOeuvre($titreOriginalOeuvre);
     $oeuvre->setTitreFrancaisOeuvre($titreFrancaisOeuvre);

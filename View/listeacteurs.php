@@ -22,7 +22,7 @@ $actors = $dao->getAllActeurs();
     <div class="actors-container">
         <?php foreach ($actors as $actor): ?>
             <div class="actor-card">
-                <a href="actor_detail.php?id=<?= htmlspecialchars($actor['idActeur']); ?>" class="actor-link">
+                <a href="acteur_detail.php?id=<?= htmlspecialchars($actor['idActeur']); ?>" class="actor-link">
                     <img src="<?= htmlspecialchars($actor['photo']); ?>"
                          alt="<?= htmlspecialchars($actor['prenomActeur'] . ' ' . $actor['nomActeur']); ?>" class="actor-image">
                     <h3 class="actor-name"><?= htmlspecialchars($actor['prenomActeur'] . ' ' . $actor['nomActeur']); ?></h3>
