@@ -13,20 +13,18 @@ if (isset($_SESSION['idCompte'])) {
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
     $username = $_POST['login'] ?? '';
     $password = $_POST['motDePasse'] ?? '';
 
     if (empty($username) || empty($password)) {
         $error = 'Veuillez remplir tous les champs.';
-    } else{
+    } else {
         $sql = "SELECT idCompte, login, motDePasse FROM compte WHERE login = ?";
         $stmt = $db->prepare($sql);
         $stmt->execute([$username]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        var_dump($user);
 
-        if ($user && ($password=== $user['motDePasse'])) {
+        if ($user && ($password === $user['motDePasse'])) {
             $_SESSION['idCompte'] = $user['idCompte'];
             $_SESSION['login'] = $user['login'];
             header('Location: accueil.php');
@@ -49,6 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include 'header.php'; ?>
 <div class="login-container">
     <h2 class="login-heading">Connexion</h2>
+    <?php if ($error): ?>
+        <p class="error-message"><?= htmlspecialchars($error) ?></p>
+    <?php endif; ?>
     <form action="login.php" method="post" class="login-form">
         <div class="form-group">
             <label for="login" class="form-label">Nom d'utilisateur:</label>
@@ -61,6 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" class="form-submit">Connexion</button>
     </form>
 </div>
+<?php include 'footer.php'; ?>
 </body>
 </html>
-<?php include 'footer.php'; ?>

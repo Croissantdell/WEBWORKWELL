@@ -31,23 +31,25 @@ $genreDAO = new GenreDAO($db);
                 $director = $realisateurDAO->getRealisateurByOeuvre($oeuvre['codeOeuvre']);
                 $genres = $genreDAO->getGenresByOeuvre($oeuvre['codeOeuvre']);
                 ?>
-                <div class="oeuvre">
-                    <a href="oeuvre_detail.php?id=<?= htmlspecialchars($oeuvre['codeOeuvre']); ?>">
-                        <img src="<?= htmlspecialchars($oeuvre['affiche']); ?>"
-                             alt="<?= htmlspecialchars($oeuvre['titreFrancaisOeuvre']); ?>">
-                        <h3><?= htmlspecialchars($oeuvre['titreFrancaisOeuvre']); ?></h3>
+                <div class="oeuvre-card">
+                    <a href="oeuvre_detail.php?id=<?= htmlspecialchars($oeuvre['codeOeuvre']); ?>" class="oeuvre-link">
+                        <img src="<?= htmlspecialchars($oeuvre['affiche']); ?>" alt="<?= htmlspecialchars($oeuvre['titreFrancaisOeuvre']); ?>" class="oeuvre-img">
+                        <h3 class="oeuvre-title"><?= htmlspecialchars($oeuvre['titreFrancaisOeuvre']); ?></h3>
                     </a>
-                    <p><img src="../image/per.png" alt="Logo-Réalisateur" class="icon">
+                    <p class="oeuvre-director">
+                        <img src="../image/per.png" alt="Logo-Réalisateur" class="icon">
                         <?= htmlspecialchars($director['prenomRealisateur']) . ' ' . htmlspecialchars($director['nomRealisateur']); ?>
                     </p>
-                    <p><img src="../image/lib.png" alt="Logo-Genre" class="icon">
-                        <?php foreach ($genres as $genre) { echo htmlspecialchars($genre['libelleGenre']) . ', '; } ?>
+                    <p class="oeuvre-genres">
+                        <img src="../image/lib.png" alt="Logo-Genre" class="icon">
+                        <?php foreach ($genres as $genre): ?>
+                            <?= htmlspecialchars($genre['libelleGenre']) . ', '; ?>
+                        <?php endforeach; ?>
                     </p>
                 </div>
             <?php endforeach; ?>
         </div>
     </section>
 </main>
-</body>
-</html>
 <?php include 'footer.php'; ?>
+</body>

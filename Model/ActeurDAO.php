@@ -57,4 +57,26 @@ class ActeurDAO {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function createActeur(ActeurBO $acteur): bool {
+        $sql = "INSERT INTO acteur (idActeur, nomActeur, prenomActeur, nationaliteActeur, dateNaissanceActeur, photo) 
+                VALUES (:idActeur, :nomActeur, :prenomActeur, :nationaliteActeur, :dateNaissanceActeur, :photo)";
+        $stmt = $this->db->prepare($sql);
+
+        $idActeur = $acteur->getIdActeur();
+        $nomActeur = $acteur->getNomActeur();
+        $prenomActeur = $acteur->getPrenomActeur();
+        $nationaliteActeur = $acteur->getNationaliteActeur();
+        $dateNaissanceActeur = $acteur->getDateNaissanceActeur();
+        $photo = $acteur->getPhoto();
+
+        $stmt->bindParam(':idActeur', $idActeur);
+        $stmt->bindParam(':nomActeur', $nomActeur);
+        $stmt->bindParam(':prenomActeur', $prenomActeur);
+        $stmt->bindParam(':nationaliteActeur', $nationaliteActeur);
+        $stmt->bindParam(':dateNaissanceActeur', $dateNaissanceActeur);
+        $stmt->bindParam(':photo', $photo);
+
+        return $stmt->execute();
+    }
+
 }
