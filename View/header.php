@@ -17,6 +17,7 @@ if (session_status() === PHP_SESSION_NONE) { session_start(); }
             <li class="nav-item"><a href="listeOeuvres.php" class="nav-link">Liste Oeuvres</a></li>
             <li class="nav-item"><a href="listeacteurs.php" class="nav-link">Liste Acteurs</a></li>
             <li class="nav-item"><a href="listeRealisateurs.php" class="nav-link">Liste Realisateurs</a></li>
+            
 
         </ul>
 
