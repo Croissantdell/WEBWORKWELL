@@ -17,18 +17,13 @@ if (session_status() === PHP_SESSION_NONE) { session_start(); }
             <li class="nav-item"><a href="listeOeuvres.php" class="nav-link">Liste Oeuvres</a></li>
             <li class="nav-item"><a href="listeacteurs.php" class="nav-link">Liste Acteurs</a></li>
             <li class="nav-item"><a href="listeRealisateurs.php" class="nav-link">Liste Realisateurs</a></li>
+            
 
         </ul>
 
         <div class="user-account">
             <?php if(isset($_SESSION['idCompte'])): ?>
                 <a href="compte.php" class="btn btn-primary logout-btn">Ajouter oeuvre</a>
-                <a href="compte.php" class="btn btn-primary logout-btn">Ajouter realisateur</a>
-                <a href="compte.php" class="btn btn-primary logout-btn">Ajouter acteur</a>
-                <a href="compte.php" class="btn btn-primary logout-btn">Ajouter genre</a>
-                <a href="compte.php" class="btn btn-primary logout-btn">Ajouter classification</a>
-
-
 
 
                 <a href="logout.php" class="btn btn-primary logout-btn">Déconnexion</a>
