@@ -31,4 +31,19 @@ class GenreDAO {
         $stmt->execute([$codeOeuvre]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    public function createGenre(GenreBO $genre): bool {
+        $sql = "INSERT INTO genre (idGenre, libelleGenre) VALUES (:idGenre, :libelleGenre)";
+        $stmt = $this->db->prepare($sql);
+
+        // Assigning the property values to variables
+        $idGenre = $genre->getIdGenre();
+        $libelleGenre = $genre->getLibelleGenre();
+
+        $stmt->bindParam(':idGenre', $idGenre);
+        $stmt->bindParam(':libelleGenre', $libelleGenre);
+
+        return $stmt->execute();
+    }
 }

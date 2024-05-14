@@ -33,4 +33,16 @@ class ClassificationDAO {
         $row = $stmt->fetch();
         return $row ? new ClassificationBO($row['codeClassification'], $row['libelleClassification']) : null;
     }
+    public function createClassification(ClassificationBO $classification): bool {
+        $sql = "INSERT INTO classification (codeClassification, libelleClassification) VALUES (:codeClassification, :libelleClassification)";
+        $stmt = $this->db->prepare($sql);
+
+        $codeClassification = $classification->getCodeClassification();
+        $libelleClassification = $classification->getLibelleClassification();
+
+        $stmt->bindParam(':codeClassification', $codeClassification);
+        $stmt->bindParam(':libelleClassification', $libelleClassification);
+
+        return $stmt->execute();
+    }
 }

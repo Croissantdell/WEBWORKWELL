@@ -53,4 +53,26 @@ class RealisateurDAO
         $stmt->execute([$id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function createRealisateur(RealisateurBO $realisateur): bool {
+        $sql = "INSERT INTO realisateur (idRealisateur, nomRealisateur, prenomRealisateur, nationaliteRealisateur, recompenseRealisateur, photo) 
+                VALUES (:idRealisateur, :nomRealisateur, :prenomRealisateur, :nationaliteRealisateur, :recompenseRealisateur, :photo)";
+        $stmt = $this->db->prepare($sql);
+
+        // Assigning the property values to variables
+        $idRealisateur = $realisateur->getIdRealisateur();
+        $nomRealisateur = $realisateur->getNomRealisateur();
+        $prenomRealisateur = $realisateur->getPrenomRealisateur();
+        $nationaliteRealisateur = $realisateur->getNationaliteRealisateur();
+        $recompenseRealisateur = $realisateur->getRecompenseRealisateur();
+        $photo = $realisateur->getPhoto();
+
+        $stmt->bindParam(':idRealisateur', $idRealisateur);
+        $stmt->bindParam(':nomRealisateur', $nomRealisateur);
+        $stmt->bindParam(':prenomRealisateur', $prenomRealisateur);
+        $stmt->bindParam(':nationaliteRealisateur', $nationaliteRealisateur);
+        $stmt->bindParam(':recompenseRealisateur', $recompenseRealisateur);
+        $stmt->bindParam(':photo', $photo);
+
+        return $stmt->execute();
+    }
 }
