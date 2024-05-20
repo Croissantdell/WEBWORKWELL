@@ -1,55 +1,40 @@
-<?php
-require_once '../database.php';
-require_once '../Model/OeuvreDAO.php';
-require_once '../Model/RealisateurDAO.php';
-require_once '../Model/GenreDAO.php';
-
-$database = new Database();
-$db = $database->getPDO();
-
-$oeuvreDAO = new OeuvreDAO($db);
-$latestOeuvres = $oeuvreDAO->getLatestOeuvres();
-
-$realisateurDAO = new RealisateurDAO($db);
-$genreDAO = new GenreDAO($db);
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - Cinémathèque</title>
-    <link rel="stylesheet" href="../Style.css">
+    <link rel="stylesheet" href="/P2025/WEBWORKWELL/style.css">
 </head>
 <body>
-<?php include 'header.php'; ?>
-<main>
-    <section id="welcome">
-        <h2>Découvrez les dernières œuvress</h2>
+<?php include __DIR__ . '/header.php'; ?>
+<main class="main-content">
+    <div class="container">
+        <h2>Découvrez les dernières œuvres</h2>
         <div class="oeuvres-container">
-            <?php foreach ($latestOeuvres as $oeuvre):
-                $director = $realisateurDAO->getRealisateurByOeuvre($oeuvre['codeOeuvre']);
-                $genres = $genreDAO->getGenresByOeuvre($oeuvre['codeOeuvre']);
-                ?>
+            <?php foreach ($oeuvresWithDetails as $details): ?>
                 <div class="oeuvre-card">
-                    <a href="oeuvre_detail.php?id=<?= htmlspecialchars($oeuvre['codeOeuvre']); ?>" class="oeuvre-link">
-                        <img src="<?= htmlspecialchars($oeuvre['affiche']); ?>" alt="<?= htmlspecialchars($oeuvre['titreFrancaisOeuvre']); ?>" class="oeuvre-img">
-                        <h3 class="oeuvre-title"><?= htmlspecialchars($oeuvre['titreFrancaisOeuvre']); ?></h3>
+                    <a href="/P2025/WEBWORKWELL/oeuvre/voir/<?= htmlspecialchars($details['oeuvre']->getCodeOeuvre()); ?>" class="oeuvre-link">
+                        <img src="<?= htmlspecialchars($details['oeuvre']->getAffiche()); ?>" alt="<?= htmlspecialchars($details['oeuvre']->getTitreFrancaisOeuvre()); ?>" class="oeuvre-img">
+                        <h3 class="oeuvre-title"><?= htmlspecialchars($details['oeuvre']->getTitreFrancaisOeuvre()); ?></h3>
                     </a>
-                    <p class="oeuvre-director">
-                        <img src="../image/per.png" alt="Logo-Réalisateur" class="icon">
-                        <?= htmlspecialchars($director['prenomRealisateur']) . ' ' . htmlspecialchars($director['nomRealisateur']); ?>
-                    </p>
+                    <?php if ($details['realisateur']): ?>
+                        <p class="oeuvre-director">
+                            <img src="/P2025/WEBWORKWELL/Image/per.png" alt="Logo-Réalisateur" class="icon">
+                            <?= htmlspecialchars($details['realisateur']->getPrenomRealisateur()) . ' ' . htmlspecialchars($details['realisateur']->getNomRealisateur()); ?>
+                        </p>
+                    <?php endif; ?>
                     <p class="oeuvre-genres">
-                        <img src="../image/lib.png" alt="Logo-Genre" class="icon">
-                        <?php foreach ($genres as $genre): ?>
-                            <?= htmlspecialchars($genre['libelleGenre']) . ', '; ?>
+                        <img src="/P2025/WEBWORKWELL/Image/lib.png" alt="Logo-Genre" class="icon">
+                        <?php foreach ($details['genres'] as $genre): ?>
+                            <?= htmlspecialchars($genre->getLibelleGenre()) . ', '; ?>
                         <?php endforeach; ?>
                     </p>
                 </div>
             <?php endforeach; ?>
         </div>
-    </section>
+    </div>
 </main>
-<?php include 'footer.php'; ?>
+<?php include __DIR__ . '/footer.php'; ?>
 </body>
+</html>

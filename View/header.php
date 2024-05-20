@@ -1,38 +1,37 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) { session_start(); }
+require_once __DIR__ . '/../Controller/VerificationController.php';
+$isLoggedIn = isLoggedIn();
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet PHP</title>
-    <link rel="stylesheet" href="Style.css">
-</head>
-<body>
-<header class="main-header">
-    <nav class="main-nav">
-        <ul class="nav-list">
-            <li class="nav-item"><a href="accueil.php" class="nav-link">Accueil</a></li>
-            <li class="nav-item"><a href="listeOeuvres.php" class="nav-link">Liste Oeuvres</a></li>
-            <li class="nav-item"><a href="listeacteurs.php" class="nav-link">Liste Acteurs</a></li>
-            <li class="nav-item"><a href="listeRealisateurs.php" class="nav-link">Liste Realisateurs</a></li>
-            
 
-        </ul>
-        <div class="user-account">
-            <?php if(isset($_SESSION['idCompte'])): ?>
-                <a href="compte.php" class="btn btn-primary logout-btn">Ajouter oeuvre</a>
-                <a href="listegenre.php" class="btn btn-primary logout-btn">Gestion realisateur</a>
-                <a href="liste_acteurs_gestion.php" class="btn btn-primary logout-btn">Gestion acteur</a>
-                <a href="choixgestion.php?type=genre" class="btn btn-primary logout-btn">Gestion genre</a>
-                <a href="choixgestion.php?type=classification" class="btn btn-primary logout-btn">Gestion classification</a>
-                <a href="logout.php" class="btn btn-primary logout-btn">Déconnexion</a>
+<header class="main-header">
+    <div class="container">
+        <h1 class="site-title">WEB WORK WELL</h1>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="/P2025/WEBWORKWELL/accueil" class="nav-link">Accueil</a></li>
+                <li class="nav-item"><a href="/P2025/WEBWORKWELL/oeuvre" class="nav-link">Listes Oeuvres</a></li>
+                <li class="nav-item"><a href="/P2025/WEBWORKWELL/acteur" class="nav-link">Liste Acteurs</a></li>
+                <li class="nav-item"><a href="/P2025/WEBWORKWELL/realisateur" class="nav-link">Liste Réalisateurs</a></li>
+            </ul>
+        </nav>
+        <div class="user-info">
+            <?php if ($isLoggedIn): ?>
+                <div class="dropdown">
+                    <span class="username"><?= htmlspecialchars($_SESSION['username']); ?></span>
+                    <div class="dropdown-content">
+                        <a href="/P2025/WEBWORKWELL/oeuvre/ajouter">Ajouter oeuvre</a>
+                        <a href="/P2025/WEBWORKWELL/acteur/ajouter">Ajouter Acteur</a>
+                        <a href="/P2025/WEBWORKWELL/realisateur/ajouter">Ajouter Realisateur</a>
+                        <a href="/P2025/WEBWORKWELL/genre/">Gestion Genre</a>
+                        <a href="/P2025/WEBWORKWELL/classification/">Gestion Classification</a>
+
+                        <a href="/P2025/WEBWORKWELL/authentification/logout">Déconnexion</a>
+                    </div>
+                </div>
             <?php else: ?>
-                <a href="login.php" class="btn btn-primary login-btn">Connexion</a>
+                <a href="/P2025/WEBWORKWELL/authentification/login" class="user-link">Connexion</a>
+                <a href="/P2025/WEBWORKWELL/authentification/inscription" class="user-link">Inscription</a>
             <?php endif; ?>
         </div>
-    </nav>
+    </div>
 </header>
-</body>
-</html>
