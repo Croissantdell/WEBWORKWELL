@@ -73,6 +73,11 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="affiche">Affiche</label>
+                <input type="file" id="affiche" name="affiche">
+            </div>
+
+            <div class="form-group">
                 <button type="submit" class="btn-submit">Modifier</button>
             </div>
         </form>
