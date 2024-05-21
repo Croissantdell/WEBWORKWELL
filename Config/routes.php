@@ -63,6 +63,5 @@ return [
             'supprimer' => 'supprimer'
         ]
     ],
-    // Ajoutez d'autres routes selon vos besoins
 ];
 
