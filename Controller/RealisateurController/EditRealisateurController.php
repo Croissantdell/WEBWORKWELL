@@ -20,7 +20,6 @@ class EditRealisateurController {
             $realisateur->setNationaliteRealisateur($_POST['nationalite']);
             $realisateur->setRecompenseRealisateur($_POST['recompense']);
 
-            // Gestion de l'upload de la photo
             if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
                 $fileTmpPath = $_FILES['photo']['tmp_name'];
                 $fileName = $_FILES['photo']['name'];
