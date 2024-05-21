@@ -9,7 +9,7 @@ return [
         'controller' => 'OeuvreController',
         'actions' => [
             'index' => 'index',
-            'voir' => 'voir', // exemple d'une action avec un ID
+            'voir' => 'voir',
             'ajouter' => 'ajouter',
             'editer' => 'editer',
             'supprimer' => 'supprimer'
