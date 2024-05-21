@@ -45,8 +45,7 @@ class AjoutRealisateurController {
                 header('Location: /P2025/WEBWORKWELL/realisateur/voir/' . $realisateurId);
                 exit();
             } else {
-                // Handle error if the creation failed
-                // Redirect to a different page or display an error message
+
             }
         } else {
             require __DIR__ . '/../../View/Realisateurs/ajouterRealisateur.php';
