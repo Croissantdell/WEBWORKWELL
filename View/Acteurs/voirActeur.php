@@ -15,7 +15,7 @@
             <img src="/P2025/WEBWORKWELL/Image/Acteur/<?php echo htmlspecialchars($acteur->getPhoto()); ?>" alt="Photo de <?php echo htmlspecialchars($acteur->getNomActeur()); ?>" class="acteur-photo">
             <div class="acteur-details">
                 <p><strong>Nationalité :</strong> <?php echo htmlspecialchars($acteur->getNationaliteActeur()); ?></p>
-                <p><strong>Date de Naissance :</strong> <?php echo htmlspecialchars($acteur->getDateNaissanceActeur()->format('Y-m-d')); ?></p>
+                <p><strong>Date de Naissance :</strong> <?php echo htmlspecialchars($acteur->getDateNaissanceActeur()->format('d-m-Y')); ?></p>
             </div>
         </div>
 

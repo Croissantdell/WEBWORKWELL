@@ -14,7 +14,6 @@ function parseUrl() {
         $url = substr($url, strlen($dossierBase));
     }
 
-    // Nettoie et assainit l'URL
     $url = trim($url, '/');
     $url = filter_var($url, FILTER_SANITIZE_URL);
 
